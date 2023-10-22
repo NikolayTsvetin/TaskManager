@@ -29,6 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\Home.tsx" />
+    <None Remove="ClientApp\src\components\Layout.tsx" />
     <None Remove="ClientApp\src\components\TestCounter.tsx" />
   </ItemGroup>
 
