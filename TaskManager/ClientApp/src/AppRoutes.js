@@ -1,5 +1,6 @@
 import { FetchData } from "./components/FetchData";
 import Home from "./components/Home";
+import Tasks from "./components/Tasks";
 import TestCounter from "./components/TestCounter";
 
 const AppRoutes = [
@@ -14,6 +15,10 @@ const AppRoutes = [
     {
         path: '/fetch-data',
         element: <FetchData />
+    },
+    {
+        path: '/tasks',
+        element: <Tasks />
     }
 ];
 
