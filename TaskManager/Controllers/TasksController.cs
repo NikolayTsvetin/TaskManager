@@ -6,11 +6,11 @@ namespace TaskManager.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TaskController : ControllerBase
+    public class TasksController : ControllerBase
     {
         private readonly TaskManagerContext context;
 
-        public TaskController(TaskManagerContext context)
+        public TasksController(TaskManagerContext context)
         {
             this.context = context;
         }
