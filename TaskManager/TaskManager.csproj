@@ -15,6 +15,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.2.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -29,18 +39,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\api\Task.api.ts" />
     <None Remove="ClientApp\src\components\Home.tsx" />
     <None Remove="ClientApp\src\components\Layout.tsx" />
     <None Remove="ClientApp\src\components\NavMenu.tsx" />
     <None Remove="ClientApp\src\components\Task.tsx" />
     <None Remove="ClientApp\src\components\Tasks.tsx" />
-    <None Remove="ClientApp\src\components\TestCounter.tsx" />
+    <None Remove="ClientApp\src\components\tasks\NewTask.tsx" />
+    <None Remove="ClientApp\src\interfaces\IHttpResponseObject.ts" />
+    <None Remove="ClientApp\src\interfaces\INewTask.ts" />
     <None Remove="ClientApp\src\interfaces\ITask.ts" />
     <None Remove="ClientApp\src\types.d.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\components\TestCounter.tsx" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
