@@ -59,5 +59,25 @@ namespace TaskManager.Controllers
                 return new JsonResult(new { success = false });
             }
         }
+
+        [HttpDelete("delete")]
+        public async Task<JsonResult> DeleteTaskAsync([FromBody] string id)
+        {
+            Guid.TryParse(id, out Guid key);
+
+            try
+            {
+                Models.Task taskToDelete = await context.Tasks.FindAsync(key);
+
+                context.Tasks.Remove(taskToDelete);
+                await context.SaveChangesAsync();
+
+                return new JsonResult(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new { success = false, error = ex.Message });
+            }
+        }
     }
 }

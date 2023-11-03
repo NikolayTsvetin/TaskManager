@@ -1,7 +1,7 @@
 ﻿import { useRef } from "react";
 import styles from './NewTask.module.css';
 import INewTask from "../../interfaces/INewTask";
-import { createTask } from "../../api/Task.api";
+import { createTask } from "../../api/Tasks.api";
 import IHttpResponseObject from "../../interfaces/IHttpResponseObject";
 
 

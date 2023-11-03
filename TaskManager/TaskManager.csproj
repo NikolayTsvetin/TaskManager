@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\api\Task.api.ts" />
+    <None Remove="ClientApp\src\api\Tasks.api.ts" />
     <None Remove="ClientApp\src\components\Home.tsx" />
     <None Remove="ClientApp\src\components\Layout.tsx" />
     <None Remove="ClientApp\src\components\NavMenu.tsx" />

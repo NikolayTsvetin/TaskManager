@@ -1,7 +1,7 @@
 ﻿import { useEffect, useState } from "react";
 import ITask from "../../interfaces/ITask";
 import Task from "./Task";
-import { getTasks } from "../../api/Task.api";
+import { getTasks } from "../../api/Tasks.api";
 import NewTask from "./NewTask";
 
 const Tasks = () => {

@@ -1,5 +1,7 @@
 ﻿import ITask from '../../interfaces/ITask';
 import styles from './Task.module.css';
+import { deleteTask } from '../../api/Tasks.api';
+import IHttpResponseObject from '../../interfaces/IHttpResponseObject';
 
 const Task: React.FC<ITask> = (model: ITask) => {
     const dateCreatedParsed: Date = new Date(model.dateCreated.toString());
@@ -9,6 +11,14 @@ const Task: React.FC<ITask> = (model: ITask) => {
         const dueDateParsed: Date = new Date(model.dueDate.toString());
         dueDateDisplay = dueDateParsed.toDateString();
     }
+
+    const onDelete = async (id: string): Promise<void> => {
+        debugger;
+        // todo: add confirmation
+
+        const result: IHttpResponseObject = await deleteTask(id);
+        console.log(result);
+    };
 
     return (<div className={`${styles.taskContainer} ${styles.taskSeparator}`} key={model.id}>
         <div className={styles.taskContent}>
@@ -21,7 +31,7 @@ const Task: React.FC<ITask> = (model: ITask) => {
             <div className={styles.taskButtons}>
                 <button className={styles.button}>Edit</button>
                 <button className={styles.button}>Mark as completed</button>
-                <button className={`${styles.button} ${styles.deleteButton}`}>Delete</button>
+                <button className={`${styles.button} ${styles.deleteButton}`} onClick={() => onDelete(model.id)}>Delete</button>
             </div>
         </div>
     </div>);
