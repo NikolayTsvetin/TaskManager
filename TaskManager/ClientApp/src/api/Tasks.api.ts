@@ -86,3 +86,40 @@ export const deleteTask = async (id: string): Promise<IHttpResponseObject> => {
         return result;
     }
 };
+
+export const editTask = async (task: ITask): Promise<IHttpResponseObject> => {
+    const result: IHttpResponseObject = { success: false, errors: null };
+
+    try {
+        const response = await fetch('tasks/edit', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(task)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            result.success = true;
+
+            return result;
+        } else {
+            const errors = data.errors;
+            result.errors = errors;
+
+            return result;
+        }
+    } catch (e: unknown) {
+        result.success = false;
+
+        if (typeof e === 'string') {
+            result.errors = e;
+        } else if (e instanceof Error) {
+            result.errors = e.message;
+        }
+
+        return result;
+    }
+};

@@ -45,6 +45,7 @@
     <None Remove="ClientApp\src\components\NavMenu.tsx" />
     <None Remove="ClientApp\src\components\Task.tsx" />
     <None Remove="ClientApp\src\components\Tasks.tsx" />
+    <None Remove="ClientApp\src\components\tasks\EditTask.tsx" />
     <None Remove="ClientApp\src\components\tasks\NewTask.tsx" />
     <None Remove="ClientApp\src\interfaces\IHttpResponseObject.ts" />
     <None Remove="ClientApp\src\interfaces\INewTask.ts" />

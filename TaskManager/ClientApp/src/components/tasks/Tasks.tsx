@@ -4,7 +4,7 @@ import Task from "./Task";
 import { getTasks } from "../../api/Tasks.api";
 import NewTask from "./NewTask";
 
-const Tasks = () => {
+const Tasks: React.FC = () => {
     const [tasks, setTasks] = useState<ITask[]>([]);
     const [showCreateNew, setShowCreateNew] = useState<boolean>(false);
 

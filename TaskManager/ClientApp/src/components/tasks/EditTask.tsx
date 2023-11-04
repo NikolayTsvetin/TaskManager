@@ -1,28 +1,13 @@
 ﻿import { useRef } from "react";
+import ITask from "../../interfaces/ITask";
 import styles from './NewTask.module.css';
-import INewTask from "../../interfaces/INewTask";
-import { createTask } from "../../api/Tasks.api";
+import { editTask } from "../../api/Tasks.api";
 import IHttpResponseObject from "../../interfaces/IHttpResponseObject";
 
-
-const NewTask: React.FC = () => {
+const EditTask: React.FC<ITask> = (task: ITask) => {
     const titleRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLTextAreaElement>(null);
     const dueDateRef = useRef<HTMLInputElement>(null);
-
-    const clearInputValues = (): void => {
-        if (titleRef && titleRef.current) {
-            titleRef.current.value = '';
-        }
-
-        if (descriptionRef && descriptionRef.current) {
-            descriptionRef.current.value = '';
-        }
-
-        if (dueDateRef && dueDateRef.current) {
-            dueDateRef.current.value = '';
-        }
-    };
 
     const submitHandler = async (event: React.FormEvent): Promise<void> => {
         event.preventDefault();
@@ -36,30 +21,42 @@ const NewTask: React.FC = () => {
             return;
         }
 
-        const newTask: INewTask = {
+        const updatedTask: ITask = {
+            id: task.id,
+            dateCreated: task.dateCreated,
             title: titleValue,
             description: descriptionValue,
             dueDate: dueDateValue
         };
 
-        const response: IHttpResponseObject = await createTask(newTask);
+        const response: IHttpResponseObject = await editTask(updatedTask);
 
         if (response.errors) {
             throw response.errors;
         }
 
-        clearInputValues();
+        //clearInputValues();
     };
+
+    const dateCreatedParsed: Date = new Date(task.dateCreated.toString());
+    let dueDateDisplay: string = 'No due date set';
+
+    if (task.dueDate) {
+        const dueDateParsed: Date = new Date(task.dueDate.toString());
+        dueDateDisplay = dueDateParsed.toISOString().substr(0, 10);
+    }
 
     return (<form className={styles.form} onSubmit={submitHandler}>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" ref={titleRef} />
+        <input id="title" type="text" ref={titleRef} defaultValue={task.title} />
         <label htmlFor="description">Description</label>
-        <textarea id="description" ref={descriptionRef} />
+        <textarea id="description" ref={descriptionRef} defaultValue={task.description} />
         <label htmlFor="dueDate">Due date</label>
-        <input id="dueDate" type="date" ref={dueDateRef} />
-        <button type="submit">Create</button>
+        <input id="dueDate" type="date" ref={dueDateRef} defaultValue={dueDateDisplay} />
+        <label htmlFor="dueDate">Date created</label>
+        <input id="dueDate" type="date" defaultValue={dateCreatedParsed.toISOString().substr(0, 10)} disabled={true} />
+        <button type="submit">Edit</button>
     </form>);
 };
 
-export default NewTask;
+export default EditTask;
