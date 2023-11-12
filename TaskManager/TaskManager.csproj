@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\api\Expenses.api.ts" />
     <None Remove="ClientApp\src\api\Tasks.api.ts" />
     <None Remove="ClientApp\src\components\calendar\CalendarView.tsx" />
     <None Remove="ClientApp\src\components\expenses\Expenses.tsx" />

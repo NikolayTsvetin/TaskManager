@@ -1,22 +1,32 @@
-﻿import styles from './ExpenseTracker.module.css';
+﻿import { useEffect, useState } from 'react';
+import styles from './ExpenseTracker.module.css';
 import Expenses from './Expenses';
+import IExpense from '../../interfaces/IExpense';
+import IExpenseType from '../../interfaces/IExpenseType';
+import { getExpenses, getExpenseTypes } from '../../api/Expenses.api';
 
 const ExpensesTracker: React.FC = () => {
-    const TEMP_EXPENSES = [
-        { id: '1', typeId: '1', description: 'test', amount: 10 },
-        { id: '2', typeId: '2', description: 'test2', amount: 20 },
-        { id: '3', typeId: '3', description: 'test3', amount: 30 },
-        { id: '4', typeId: '4', description: 'test4', amount: 40 },
-        { id: '5', typeId: '5', description: 'test5', amount: 50 }
-    ];
+    const [expenses, setExpenses] = useState<IExpense[]>([]);
+    const [expenseTypes, setExpenseTypes] = useState<IExpenseType[]>([]);
 
-    const TEMP_EXPENSE_TYPES = [
-        { id: '1', name: 'Credit' },
-        { id: '2', name: 'Food' },
-        { id: '3', name: 'Going out' },
-        { id: '4', name: 'Home stuff' },
-        { id: '5', name: 'Clothes' },
-    ];
+    useEffect(() => {
+        const getExpensesData = async () => setExpenses(await getExpenses());
+        const getExpenseTypesData = async () => setExpenseTypes(await getExpenseTypes());
+
+        getExpensesData();
+        getExpenseTypesData();
+    }, [expenses, expenseTypes]);
+    //const TEMP_EXPENSES = [
+    //    { id: '1', typeId: '1', description: 'test', amount: 10 },
+    //    { id: '2', typeId: '2', description: 'test2', amount: 20 },
+    //    { id: '3', typeId: '3', description: 'test3', amount: 30 },
+    //    { id: '4', typeId: '4', description: 'test4', amount: 40 },
+    //    { id: '5', typeId: '5', description: 'test5', amount: 50 }
+    //];
+
+    if (expenseTypes === null || expenseTypes.length === 0) {
+        return <p>Loading...</p>;
+    }
 
     return (<>
         <div className={styles.expenseTracker}>
@@ -34,14 +44,14 @@ const ExpensesTracker: React.FC = () => {
                 <div>
                     <label>Type:</label>
                     <select>
-                        {TEMP_EXPENSE_TYPES.map((type) => (
+                        {expenseTypes.map((type) => (
                             <option key={type.id} value={type.id}>{type.name}</option>
                         ))}
                     </select>
                 </div>
                 <button type="button">Add Expense</button>
             </form>
-            <Expenses expenses={TEMP_EXPENSES} expenseTypes={TEMP_EXPENSE_TYPES} />
+            <Expenses expenses={expenses} expenseTypes={expenseTypes} />
         </div>
     </>);
 };

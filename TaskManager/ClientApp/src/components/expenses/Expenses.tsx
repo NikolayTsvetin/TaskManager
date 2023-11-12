@@ -4,6 +4,14 @@ const Expenses: React.FC<IExpensesInformation> = (expensesInformation: IExpenses
     const expenses = expensesInformation.expenses;
     const expenseTypes = expensesInformation.expenseTypes;
 
+    if (expenses === null || expenseTypes === null) {
+        return <p>Loading...</p>;
+    }
+
+    if (expenses.length === 0) {
+        return <p>No expenses yet. Start adding them!</p>;
+    }
+
     return (<ul>
         {expenses.map((expense) => (
             <li key={expense.id}>
