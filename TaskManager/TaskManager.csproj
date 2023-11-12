@@ -40,6 +40,10 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\api\Tasks.api.ts" />
+    <None Remove="ClientApp\src\components\calendar\CalendarView.tsx" />
+    <None Remove="ClientApp\src\components\expenses\Expenses.tsx" />
+    <None Remove="ClientApp\src\components\expenses\ExpensesTracker.tsx" />
+    <None Remove="ClientApp\src\components\expenses\ExpenseTypes.tsx" />
     <None Remove="ClientApp\src\components\Home.tsx" />
     <None Remove="ClientApp\src\components\Layout.tsx" />
     <None Remove="ClientApp\src\components\NavMenu.tsx" />
@@ -47,6 +51,9 @@
     <None Remove="ClientApp\src\components\Tasks.tsx" />
     <None Remove="ClientApp\src\components\tasks\EditTask.tsx" />
     <None Remove="ClientApp\src\components\tasks\NewTask.tsx" />
+    <None Remove="ClientApp\src\interfaces\IExpense.ts" />
+    <None Remove="ClientApp\src\interfaces\IExpensesInformation.ts" />
+    <None Remove="ClientApp\src\interfaces\IExpenseType.ts" />
     <None Remove="ClientApp\src\interfaces\IHttpResponseObject.ts" />
     <None Remove="ClientApp\src\interfaces\INewTask.ts" />
     <None Remove="ClientApp\src\interfaces\ITask.ts" />

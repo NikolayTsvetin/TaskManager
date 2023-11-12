@@ -9,5 +9,9 @@ namespace TaskManager.Models
         }
 
         public DbSet<Task> Tasks { get; set; }
+
+        public DbSet<ExpenseType> ExpenseTypes { get; set; }
+
+        public DbSet<Expense> Expenses { get; set; }
     }
 }
