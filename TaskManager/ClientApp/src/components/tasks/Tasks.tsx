@@ -12,7 +12,7 @@ const Tasks: React.FC = () => {
         const getTasksData = async () => setTasks(await getTasks());
 
         getTasksData();
-    }, [tasks]);
+    }, []);
 
     const toggleCreateNew = (): void => setShowCreateNew((prevState) => !prevState);
 

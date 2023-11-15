@@ -4,6 +4,7 @@ import Expenses from './Expenses';
 import IExpense from '../../interfaces/IExpense';
 import IExpenseType from '../../interfaces/IExpenseType';
 import { getExpenses, getExpenseTypes } from '../../api/Expenses.api';
+import NewExpense from './NewExpense';
 
 const ExpensesTracker: React.FC = () => {
     const [expenses, setExpenses] = useState<IExpense[]>([]);
@@ -15,7 +16,7 @@ const ExpensesTracker: React.FC = () => {
 
         getExpensesData();
         getExpenseTypesData();
-    }, [expenses, expenseTypes]);
+    }, []);
     //const TEMP_EXPENSES = [
     //    { id: '1', typeId: '1', description: 'test', amount: 10 },
     //    { id: '2', typeId: '2', description: 'test2', amount: 20 },
@@ -31,26 +32,7 @@ const ExpensesTracker: React.FC = () => {
     return (<>
         <div className={styles.expenseTracker}>
             <h2>Expense Tracker</h2>
-
-            <form>
-                <div>
-                    <label>Description:</label>
-                    <input />
-                </div>
-                <div>
-                    <label>Amount:</label>
-                    <input type="number" />
-                </div>
-                <div>
-                    <label>Type:</label>
-                    <select>
-                        {expenseTypes.map((type) => (
-                            <option key={type.id} value={type.id}>{type.name}</option>
-                        ))}
-                    </select>
-                </div>
-                <button type="button">Add Expense</button>
-            </form>
+            <NewExpense {...expenseTypes} />
             <Expenses expenses={expenses} expenseTypes={expenseTypes} />
         </div>
     </>);

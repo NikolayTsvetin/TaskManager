@@ -1,8 +1,10 @@
-﻿import IExpensesInformation from "../../interfaces/IExpensesInformation";
+﻿import IExpense from "../../interfaces/IExpense";
+import IExpenseType from "../../interfaces/IExpenseType";
+import IExpensesInformation from "../../interfaces/IExpensesInformation";
 
 const Expenses: React.FC<IExpensesInformation> = (expensesInformation: IExpensesInformation) => {
-    const expenses = expensesInformation.expenses;
-    const expenseTypes = expensesInformation.expenseTypes;
+    const expenses: IExpense[] = expensesInformation.expenses;
+    const expenseTypes: IExpenseType[] = expensesInformation.expenseTypes;
 
     if (expenses === null || expenseTypes === null) {
         return <p>Loading...</p>;
